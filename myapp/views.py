@@ -1,10 +1,10 @@
 from datetime import timedelta
+from django.contrib import messages
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils import timezone
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from myapp.forms import UserForm, ProductForm, PurchaseForm, PurchaseReturnForm
 from myapp.models import MyUser, Product, Purchase, PurchaseReturns
 
@@ -76,13 +76,13 @@ class PurchaseReturnCreateView(CreateView):
         self.object = form.save(commit=False)
         purchase = Purchase.objects.get(id=self.request.POST['purchase_id'])
         returns = PurchaseReturns.objects.filter(purchase=purchase)
-        if purchase.time_of_buy + timedelta(minutes=3) < timezone.now():
+        if purchase.time_of_buy + timedelta(seconds=60 * 3) < timezone.now():
             messages.error(self.request, 'Извините, но время для возврата товара вышло, вы не уложились в три минуты!')
             return redirect('purchase')
         elif returns:
-            messages.info(self.request, 'Ваш запрос на возврат принят в обработкук!')
+            messages.info(self.request, 'Ваш запрос на возврат принят в обработку!')
             return redirect('purchase')
-        messages.info(self.request, 'Ваш запрос обработан!')
+        messages.info(self.request, 'Ваш запрос отправлен в обработку!')
         self.object.purchase = purchase
         self.object.save()
         return super().form_valid(form=form)

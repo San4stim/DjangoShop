@@ -15,5 +15,4 @@ urlpatterns = [
     path('delete_purchase/<int:pk>', PurchaseDeleteView.as_view(), name='delete_purchase'),
     path('delete_return/<int:pk>', ReturnDeleteView.as_view(), name='delete_return'),
     path('update_product/<int:pk>', UpdateProductView.as_view(), name='update_product'),
-
 ]

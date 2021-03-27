@@ -21,7 +21,7 @@
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-danger" role="alert">
-                    {{  message }}
+                    {{ message }}
                 </div>
             {% endfor %}
         {% endif %}
@@ -33,7 +33,7 @@
             <div style="color: whitesmoke">
                 <div class="d-flex">
                     <div class="p-2">
-                        <img src="{{ product.image }}" width="150" height="150">
+                        <img src="/media/ {{ product.image }}" width="150" height="150">
                     </div>
                     <div class="p-2">
                         <h2 style="color: #e4b101">{{ purchase.product.name }}</h2>

@@ -28,17 +28,16 @@
 
     </div>
     {% for purchase in object_list %}
-        <form method="post" action="{% url 'purchase_return' %}">
-
+        <form method="post" action="{% url 'purchase_return' %}" enctype="multipart/form-data">
             <div style="color: whitesmoke">
                 <div class="d-flex">
                     <div class="p-2">
-                        <img src="/media/ {{ product.image }}" width="150" height="150">
+                        <img src="/media/{{ product.image }}" width="150" height="150" alt="{{ product.name }}">
                     </div>
                     <div class="p-2">
                         <h2 style="color: #e4b101">{{ purchase.product.name }}</h2>
                         <p>Стоимость товара: {{ purchase.product.price }}</p>
-                        <p>Количество купленного товара: {{ purchase.quantity_of_products }}</p>
+                        <p>Количество купленного товара: {{ purchase.quantity }}</p>
                         <p>Время покупки товара: {{ purchase.time_of_buy }}</p>
                         <p>{{ purchase_form }}</p>
                     </div>

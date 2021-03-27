@@ -1,7 +1,5 @@
 from django import forms
 from django.forms import ModelForm
-from django.http import request
-
 from myapp.models import MyUser, Product, Purchase, PurchaseReturns
 
 
@@ -22,7 +20,7 @@ class UserForm(ModelForm):
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ('name', 'description', 'price', 'quantity_in_stock',)
+        fields = ('name', 'description', 'price', 'quantity_in_stock', 'image')
 
 
 class PurchaseForm(ModelForm):

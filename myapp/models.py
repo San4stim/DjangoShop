@@ -14,15 +14,10 @@ class Product(models.Model):
     description = models.TextField(max_length=500)
     price = models.PositiveIntegerField(default=1)
     quantity_in_stock = models.PositiveSmallIntegerField(default=1)
-    image = models.ImageField(upload_to='media/')
+    image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return f'{self.name} id {self.id}'
-
-
-# class ProductImages(models.Model):
-#     product = models.ForeignKey(Product)
-#     image = models.ImageField(upload_to='media/', blank=True, null=True)
+        return f'id_{self.id} | {self.name} '
 
 
 class Purchase(models.Model):
@@ -32,7 +27,7 @@ class Purchase(models.Model):
     time_of_buy = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'User_id-{self.user.id} | Product-{self.product.name} | qt.{self.quantity_of_products} | id-{self.id}'
+        return f'Покупка от {self.user} | Товар - {self.product.name} | Количество {self.quantity_of_products} '
 
 
 class PurchaseReturns(models.Model):
@@ -40,4 +35,4 @@ class PurchaseReturns(models.Model):
     time_of_request = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'User_id-{self.purchase.user.id} Product.-{self.purchase.product.name} {self.purchase.product.id} '
+        return f'Возврат от {self.purchase.user} | Товар {self.purchase.product.name}  | Количество {self.purchase.quantity_of_products} '

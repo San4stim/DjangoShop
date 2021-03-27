@@ -1,5 +1,4 @@
 from datetime import timedelta
-
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
@@ -8,6 +7,15 @@ from django.utils import timezone
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from myapp.forms import UserForm, ProductForm, PurchaseForm, PurchaseReturnForm
 from myapp.models import MyUser, Product, Purchase, PurchaseReturns
+
+
+class Login(LoginView):
+    template_name = 'login.html'
+    success_url = '/'
+
+
+class Logout(LogoutView):
+    next_page = '/'
 
 
 class UserCreateView(CreateView):
@@ -21,15 +29,6 @@ class UserCreateView(CreateView):
         self.object.set_password(self.object.password)
         self.object.save()
         return super().form_valid(form)
-
-
-class Login(LoginView):
-    template_name = 'login.html'
-    success_url = '/'
-
-
-class Logout(LogoutView):
-    next_page = '/'
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):

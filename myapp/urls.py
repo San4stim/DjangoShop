@@ -1,5 +1,4 @@
 from django.urls import path
-
 from myapp.views import UserCreateView, ProductCreateView, Login, Logout, ProductPageView, PurchaseCreateView, \
     PurchaseReturnCreateView, UpdateProductView, PurchasePageView, ReturnPageView, PurchaseDeleteView, ReturnDeleteView
 

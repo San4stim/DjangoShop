@@ -17,7 +17,7 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return f'id_{self.id} | {self.name} '
+        return f'id_{self.id} | {self.name}'
 
 
 class Purchase(models.Model):
